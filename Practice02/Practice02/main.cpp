@@ -68,7 +68,11 @@ double computeAcceleration(double m, double a)
  * OUTPUT
  *     v : new velocity, in meters/second
  ***********************************************/
-// your function goes here
+double computeVelocity(double v, double a, double t)
+{
+   //return statement
+   return (v + a * t);
+}
 
 
 /***********************************************
