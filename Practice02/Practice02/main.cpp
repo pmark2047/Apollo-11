@@ -93,7 +93,10 @@ double computeVelocity(double v, double a, double t)
  * OUTPUT
  *     y : the vertical component of the total
  ***********************************************/
-// your function goes here
+double computeVerticalComponenet(double a, double t)
+{
+   return (cos(a) / t);
+}
 
 /***********************************************
  * COMPUTE HORIZONTAL COMPONENT
@@ -146,7 +149,7 @@ double computeVelocity(double v, double a, double t)
  * OUTPUT
  *     r : radians from 0 to 2pi
  **************************************************/
-// your function goes here
+double radFromDeg()
 
 /**************************************************
  * PROMPT
