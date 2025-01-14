@@ -157,16 +157,30 @@ double computeDistance(double s, double v, double a, double t)
 int main()
 {
     // Prompt for input and variables to be computed
-   double dx =;
+   double dx;
    cout << "What is your horizontal velocity (m/s)? ";
    cin >> dx;
-   double dy =;
+   
+   double dy;
    cout << "What is your vertical velocity (m/s)? ";
    cin >> dy;
-    double y =        prompt("What is your altitude (m)? ");
-    double x =        prompt("What is your position (m)? ");
-    double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");
-    double t =        prompt("What is the time interval (s)? ");
+   
+   double y;
+   cout << "What is your altitude (m)? ";
+   cin >> y;
+   
+   double x;
+   cout << "What is your position (m)? ";
+   cin >> x;
+   
+   double aDegrees;
+   cout << "What is the angle of the LM where 0 is up (degrees)? ";
+   cin >> aDegrees;
+   
+   double t;
+   cout << "What is the time interval (s)? ";
+   cin >> t;
+   
     double aRadians;            // Angle in radians
     double accelerationThrust;  // Acceleration due to thrust
     double ddxThrust;           // Horizontal acceleration due to thrust
@@ -180,11 +194,11 @@ int main()
       // Hint: Update the position _before_ updating the velocity
 
       // Output
-      cout.setf(ios::fixed | ios::showpoint);
-      cout.precision(2);
-      cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
-      cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
-      cout << "\tTotal velocity:  " << v << "m/s\n\n";
+   cout.setf(ios::fixed | ios::showpoint);
+   cout.precision(2);
+   cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
+   cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
+   cout << "\tTotal velocity:  " << v << "m/s\n\n";
 
 
    return 0;
