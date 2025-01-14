@@ -12,6 +12,7 @@
  **************************************************************/
 
 #include <iostream>  // for CIN and COUT
+#include <cmath> // for Triginometric Calculations
 using namespace std;
 
 #define WEIGHT   15103.000   // Weight in KG
@@ -113,7 +114,11 @@ double computeVelocity(double v, double a, double t)
  * OUTPUT
  *     x : the vertical component of the total
  ***********************************************/
-// your function goes here
+double computeHorizontalComponent(double a, double total)
+{
+   //return statement
+   return (sin(a) * total);
+}
 
 /************************************************
  * COMPUTE TOTAL COMPONENT
