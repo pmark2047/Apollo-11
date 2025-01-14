@@ -162,6 +162,7 @@ int main()
    cin >> dx;
    double dy =;
    cout << "What is your vertical velocity (m/s)? ";
+   cin >> dy;
     double y =        prompt("What is your altitude (m)? ");
     double x =        prompt("What is your position (m)? ");
     double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");
