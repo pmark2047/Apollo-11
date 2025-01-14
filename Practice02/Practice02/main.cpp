@@ -187,7 +187,7 @@ int main()
     double ddyThrust;           // Vertical acceleration due to thrust
     double ddx;                 // Total horizontal acceleration
     double ddy;                 // Total vertical acceleration
-    double v;                   // Total velocity
+    double v = 0.0;                   // Total velocity
 
     // Go through the simulator five times
       // your code goes here
