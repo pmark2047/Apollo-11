@@ -13,6 +13,8 @@
 
 #include <iostream>  // for CIN and COUT
 #include <cmath> // for Triginometric Calculations
+#include <string> // for string prompts
+
 using namespace std;
 
 #define WEIGHT   15103.000   // Weight in KG
@@ -94,7 +96,7 @@ double computeVelocity(double v, double a, double t)
  * OUTPUT
  *     y : the vertical component of the total
  ***********************************************/
-double computeVerticalComponenet(double a, double total)
+double computeVerticalComponent(double a, double total)
 {
    return (cos(a) / total);
 }
@@ -142,8 +144,11 @@ double computeHorizontalComponent(double a, double total)
  * OUTPUT
  *    total : total component
  ***********************************************/
-// your function goes here
-
+double computeTotalComponent(double x, double y)
+{
+   //return statement
+   return sqrt((x * x + y * y));
+}
 
 /*************************************************
  * RADIANS FROM DEGEES
@@ -154,7 +159,10 @@ double computeHorizontalComponent(double a, double total)
  * OUTPUT
  *     r : radians from 0 to 2pi
  **************************************************/
-double radFromDeg()
+double radFromDeg(double d)
+{
+   return (2 * M_PI * (d/360));
+}
 
 /**************************************************
  * PROMPT
@@ -164,7 +172,13 @@ double radFromDeg()
  * OUTPUT
  *      response : the user's response
  ***************************************************/
-// your function goes here
+double prompt(string prompt)
+{
+   double variable;
+   cout << prompt << endl;
+   cin >> variable;
+   return variable;
+}
 
 /****************************************************************
  * MAIN
@@ -173,29 +187,12 @@ double radFromDeg()
 int main()
 {
     // Prompt for input and variables to be computed
-   double dx;
-   cout << "What is your horizontal velocity (m/s)? ";
-   cin >> dx;
-   
-   double dy;
-   cout << "What is your vertical velocity (m/s)? ";
-   cin >> dy;
-   
-   double y;
-   cout << "What is your altitude (m)? ";
-   cin >> y;
-   
-   double x;
-   cout << "What is your position (m)? ";
-   cin >> x;
-   
-   double aDegrees;
-   cout << "What is the angle of the LM where 0 is up (degrees)? ";
-   cin >> aDegrees;
-   
-   double t;
-   cout << "What is the time interval (s)? ";
-   cin >> t;
+   double dx = prompt("What is your horizontal velocity (m/s)? ");
+   double dy = prompt("What is your vertical velocity (m/s)? ");
+   double y = prompt("What is your altitude (m)? ");
+   double x = prompt("What is your position (m)? ");
+   double aDegrees = prompt("What is your position (m)? ");
+   double t = prompt("What is your position (m)? ");
    
     double aRadians;            // Angle in radians
     double accelerationThrust;  // Acceleration due to thrust
