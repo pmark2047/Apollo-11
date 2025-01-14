@@ -94,9 +94,9 @@ double computeVelocity(double v, double a, double t)
  * OUTPUT
  *     y : the vertical component of the total
  ***********************************************/
-double computeVerticalComponenet(double a, double t)
+double computeVerticalComponenet(double a, double total)
 {
-   return (cos(a) / t);
+   return (cos(a) / total);
 }
 
 /***********************************************
