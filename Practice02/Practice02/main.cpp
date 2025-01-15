@@ -17,6 +17,7 @@
 
 using namespace std;
 
+// Set Global Variables
 #define WEIGHT   15103.000   // Weight in KG
 #define GRAVITY     -1.625   // Vertical acceleration due to gravity, in m/s^2
 #define THRUST   45000.000   // Thrust of main engine, in Newtons (kg m/s^2)
@@ -37,7 +38,7 @@ using namespace std;
 double computeDistance(double s, double v, double a, double t)
 {
    // return solution
-   return (s + v * t + 1/2 * a * t * t);
+   return (s + v * t + 0.5 * a * t * t);
 }
 
 /**************************************************
@@ -51,10 +52,10 @@ double computeDistance(double s, double v, double a, double t)
  * OUTPUT
  *     a : acceleration, in meters/second^2
  ***************************************************/
-double computeAcceleration(double m, double a)
+double computeAcceleration(double f, double m)
 {
    //return statement
-   return (m * a);
+   return (f/m);
 }
 
 /***********************************************
@@ -98,7 +99,8 @@ double computeVelocity(double v, double a, double t)
  ***********************************************/
 double computeVerticalComponent(double a, double total)
 {
-   return (cos(a) / total);
+   //return statement
+   return (cos(a) * total);
 }
 
 /***********************************************
@@ -161,7 +163,7 @@ double computeTotalComponent(double x, double y)
  **************************************************/
 double radFromDeg(double d)
 {
-   return (2 * M_PI * (d/360));
+   return (2 * M_PI * (d/360.0));
 }
 
 /**************************************************
@@ -187,32 +189,42 @@ double prompt(string prompt)
 int main()
 {
     // Prompt for input and variables to be computed
-   double dx = prompt("What is your horizontal velocity (m/s)? ");
-   double dy = prompt("What is your vertical velocity (m/s)? ");
-   double y = prompt("What is your altitude (m)? ");
-   double x = prompt("What is your position (m)? ");
-   double aDegrees = prompt("What is your position (m)? ");
-   double t = prompt("What is your position (m)? ");
+   double dx = prompt("What is your horizontal velocity (m/s)? ");   // Horizontal Velocity
+   double dy = prompt("What is your vertical velocity (m/s)? ");  // Vertical Velocity
+   double y = prompt("What is your altitude (m)? ");  // Altitude (y)
+   double x = prompt("What is your position (m)? ");  // Position (x)
+   double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");  // Angle (degrees)
+   double t = prompt("What is the time interval (s)? "); // Time (s)
    
-    double aRadians;            // Angle in radians
-    double accelerationThrust;  // Acceleration due to thrust
-    double ddxThrust;           // Horizontal acceleration due to thrust
-    double ddyThrust;           // Vertical acceleration due to thrust
-    double ddx;                 // Total horizontal acceleration
-    double ddy;                 // Total vertical acceleration
-    double v = 0.0;                   // Total velocity
+    // Compute variables for calculation using the User's input
+   double aRadians = radFromDeg(aDegrees);            // Angle in radians
+   double accelerationThrust = computeAcceleration(THRUST, WEIGHT);     // Acceleration due to thrust
+   double ddxThrust = computeHorizontalComponent(aRadians, THRUST);           // Horizontal acceleration due to thrust
+   double ddyThrust = computeVerticalComponent(aRadians, THRUST);             // Vertical acceleration due to thrust
+   double ddx = computeAcceleration(ddxThrust, WEIGHT);                 // Total horizontal acceleration
+   double ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;                 // Total vertical acceleration
+   double v = computeTotalComponent(dx, dy);                   // Total velocity
 
     // Go through the simulator five times
-      // your code goes here
-      // Hint: Update the position _before_ updating the velocity
+   for (int i = 0; i < 5; i++)
+   {
+      // Update Position
+      x = computeDistance(x, dx, ddx, t);
+      y = computeDistance(y, dy, ddy, t);
+      
+      // Update Velocity
+      dx = computeVelocity(dx, ddx, t);
+      dy = computeVelocity(dy, ddy, t);
+      v = computeTotalComponent(dx, dy);
 
+      
       // Output
-   cout.setf(ios::fixed | ios::showpoint);
-   cout.precision(2);
-   cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
-   cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
-   cout << "\tTotal velocity:  " << v << "m/s\n\n";
-
+      cout.setf(ios::fixed | ios::showpoint);
+      cout.precision(2);
+      cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
+      cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
+      cout << "\tTotal velocity:  " << v << "m/s\n\n";
+   }
 
    return 0;
 }
