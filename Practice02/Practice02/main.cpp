@@ -177,7 +177,7 @@ double radFromDeg(double d)
 double prompt(string prompt)
 {
    double variable;
-   cout << prompt << endl;
+   cout << prompt;
    cin >> variable;
    return variable;
 }
@@ -189,12 +189,12 @@ double prompt(string prompt)
 int main()
 {
     // Prompt for input and variables to be computed
-   double dx = prompt("What is your horizontal velocity (m/s)? ");   // Horizontal Velocity
    double dy = prompt("What is your vertical velocity (m/s)? ");  // Vertical Velocity
+   double dx = prompt("What is your horizontal velocity (m/s)? ");   // Horizontal Velocity
    double y = prompt("What is your altitude (m)? ");  // Altitude (y)
-   double x = prompt("What is your position (m)? ");  // Position (x)
+   double x = 0;  // Position (x)
    double aDegrees = prompt("What is the angle of the LM where 0 is up (degrees)? ");  // Angle (degrees)
-   double t = prompt("What is the time interval (s)? "); // Time (s)
+   double t = 1; // Time (s)
    
     // Compute variables for calculation using the User's input
    double aRadians = radFromDeg(aDegrees);            // Angle in radians
@@ -205,6 +205,8 @@ int main()
    double ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;                 // Total vertical acceleration
    double v = computeTotalComponent(dx, dy);                   // Total velocity
 
+   // Explain to User
+   cout << "\nFor the next 5 seconds with the main engine on, the position of the lander is:\n" << endl;
     // Go through the simulator five times
    for (int i = 0; i < 5; i++)
    {
@@ -221,13 +223,14 @@ int main()
       // Output
       cout.setf(ios::fixed | ios::showpoint);
       cout.precision(2);
-      cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
-      cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
-      cout << "\tTotal velocity:  " << v << "m/s\n\n";
+      cout << int (t * (i + 1)) << "s - x,y:(" << x << ", " << y << ")m  "
+      << "dx,dy:(" << dx << ", " << dy << ")m/s  speed:"
+      << v << "m/s  angle:"
+      << aDegrees << "deg" << endl;
    }
    
    // Prompt for the new angle
-   aDegrees = prompt("What is the NEW angle of the LM where 0 is up (degrees)? ");
+   aDegrees = prompt("\nWhat is the NEW angle of the LM where 0 is up (degrees)? ");
    
    // Recompute the variables
    aRadians = radFromDeg(aDegrees);            // Angle in radians
@@ -237,6 +240,9 @@ int main()
    ddx = computeAcceleration(ddxThrust, WEIGHT);                 // Total horizontal acceleration
    ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;                 // Total vertical acceleration
    v = computeTotalComponent(dx, dy);
+   
+   // Explain to User
+   cout << "\nFor the next 5 seconds with the main engine on, the position of the lander is:\n" << endl;
    
    // Run through the simulator another 5 times for the new five seconds
    for (int i = 0; i < 5; i++)
@@ -254,9 +260,10 @@ int main()
       // Output
       cout.setf(ios::fixed | ios::showpoint);
       cout.precision(2);
-      cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
-      cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
-      cout << "\tTotal velocity:  " << v << "m/s\n\n";
+      cout << int (t * (i + 6)) << "s - x,y:(" << x << ", " << y << ")m  "
+      << "dx,dy:(" << dx << ", " << dy << ")m/s  speed:"
+      << v << "m/s  angle:"
+      << aDegrees << "deg" << endl;
    }
 
    return 0;
