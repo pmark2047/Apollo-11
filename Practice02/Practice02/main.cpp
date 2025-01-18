@@ -2,13 +2,15 @@
  * 1. Name:
  *      Peyton Markus and Will Barr
  * 2. Assignment Name:
- *      Practice 02: Physics simulator
+ *      Lab 02: Apollo 11 Physics
  * 3. Assignment Description:
- *      Compute how the Apollo lander will move across the screen
+ *      Simulate the Apollo 11 Lander
  * 4. What was the hardest part? Be as specific as possible.
- *      -a paragraph or two about how the assignment went for you-
+ *      The hardest part of this project was communication. This week
+ *       one of us was sick and in Boise so we had to call and communicate
+ *       well to finish the project within the time constraints
  * 5. How long did it take for you to complete the assignment?
- *      -total time in hours: reading the assignment, submitting, etc.
+ *      Roughly 2.5 hours
  **************************************************************/
 
 #include <iostream>  // for CIN and COUT
