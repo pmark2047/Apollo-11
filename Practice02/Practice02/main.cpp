@@ -225,6 +225,39 @@ int main()
       cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
       cout << "\tTotal velocity:  " << v << "m/s\n\n";
    }
+   
+   // Prompt for the new angle
+   aDegrees = prompt("What is the NEW angle of the LM where 0 is up (degrees)? ");
+   
+   // Recompute the variables
+   aRadians = radFromDeg(aDegrees);            // Angle in radians
+   accelerationThrust = computeAcceleration(THRUST, WEIGHT);     // Acceleration due to thrust
+   ddxThrust = computeHorizontalComponent(aRadians, THRUST);           // Horizontal acceleration due to thrust
+   ddyThrust = computeVerticalComponent(aRadians, THRUST);             // Vertical acceleration due to thrust
+   ddx = computeAcceleration(ddxThrust, WEIGHT);                 // Total horizontal acceleration
+   ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;                 // Total vertical acceleration
+   v = computeTotalComponent(dx, dy);
+   
+   // Run through the simulator another 5 times for the new five seconds
+   for (int i = 0; i < 5; i++)
+   {
+      // Update Position
+      x = computeDistance(x, dx, ddx, t);
+      y = computeDistance(y, dy, ddy, t);
+      
+      // Update Velocity
+      dx = computeVelocity(dx, ddx, t);
+      dy = computeVelocity(dy, ddy, t);
+      v = computeTotalComponent(dx, dy);
+
+      
+      // Output
+      cout.setf(ios::fixed | ios::showpoint);
+      cout.precision(2);
+      cout << "\tNew position:   (" <<  x << ", " <<  y << ")m\n";
+      cout << "\tNew velocity:   (" << dx << ", " << dy << ")m/s\n";
+      cout << "\tTotal velocity:  " << v << "m/s\n\n";
+   }
 
    return 0;
 }
