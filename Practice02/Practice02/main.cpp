@@ -199,16 +199,24 @@ int main()
    double t = 1; // Time (s)
    
     // Compute variables for calculation using the User's input
-   double aRadians = radFromDeg(aDegrees);            // Angle in radians
-   double accelerationThrust = computeAcceleration(THRUST, WEIGHT);     // Acceleration due to thrust
-   double ddxThrust = computeHorizontalComponent(aRadians, THRUST);           // Horizontal acceleration due to thrust
-   double ddyThrust = computeVerticalComponent(aRadians, THRUST);             // Vertical acceleration due to thrust
-   double ddx = computeAcceleration(ddxThrust, WEIGHT);                 // Total horizontal acceleration
-   double ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;                 // Total vertical acceleration
-   double v = computeTotalComponent(dx, dy);                   // Total velocity
+      // Angle in radians
+   double aRadians = radFromDeg(aDegrees);
+      // Acceleration due to thrust
+   double accelerationThrust = computeAcceleration(THRUST, WEIGHT);
+      // Horizontal acceleration due to thrust
+   double ddxThrust = computeHorizontalComponent(aRadians, THRUST);
+      // Vertical acceleration due to thrust
+   double ddyThrust = computeVerticalComponent(aRadians, THRUST);
+      // Total horizontal acceleration
+   double ddx = computeAcceleration(ddxThrust, WEIGHT);
+      // Total vertical acceleration
+   double ddy = computeAcceleration(ddyThrust, WEIGHT) + GRAVITY;
+      // Total velocity
+   double v = computeTotalComponent(dx, dy);
 
    // Explain to User
-   cout << "\nFor the next 5 seconds with the main engine on, the position of the lander is:\n" << endl;
+   cout << "\nFor the next 5 seconds with the main engine on, "
+   << "the position of the lander is:\n" << endl;
     // Go through the simulator five times
    for (int i = 0; i < 5; i++)
    {
