@@ -41,11 +41,11 @@ public:
    // Setters
    void setDegrees(double degrees) { }
    void setRadians(double radians) { }
-   void setUp()                    { }
-   void setDown()                  { }
-   void setRight()                 { }
-   void setLeft()                  { }
-   void reverse()                  { }
+   void setUp()                    {radians = 0.0;}
+   void setDown()                  {radians = M_PI;}
+   void setRight()                 {radians = M_PI/2;}
+   void setLeft()                  {radians = M_PI * 1.5;}
+   void reverse()                  {radians += M_PI;}
    Angle& add(double delta) { radians = -99.9; return *this; }
 
 private:
