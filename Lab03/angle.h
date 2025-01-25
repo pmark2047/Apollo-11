@@ -39,8 +39,8 @@ public:
    double getRadians() const { return -99.9; }
 
    // Setters
-   void setDegrees(double degrees) { }
-   void setRadians(double radians) { }
+   void setDegrees(double degrees) {this->radians = (degrees/360) * 2 * M_PI;}
+   void setRadians(double radians) {this->radians = radians;}
    void setUp()                    {radians = 0.0;}
    void setDown()                  {radians = M_PI;}
    void setRight()                 {radians = M_PI/2;}
