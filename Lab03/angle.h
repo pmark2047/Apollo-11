@@ -35,8 +35,8 @@ public:
    Angle(double degrees)   : radians((degrees/360) * 2 * M_PI)  {}
 
    // Getters
-   double getDegrees() const { return -99.9; }
-   double getRadians() const { return -99.9; }
+   double getDegrees() const { return ((radians / (2 * M_PI)) * 360); }
+   double getRadians() const { return radians; }
 
    // Setters
    void setDegrees(double degrees) {this->radians = (degrees/360) * 2 * M_PI;}
@@ -46,7 +46,7 @@ public:
    void setRight()                 {radians = M_PI/2;}
    void setLeft()                  {radians = M_PI * 1.5;}
    void reverse()                  {radians += M_PI;}
-   Angle& add(double delta) { radians = -99.9; return *this; }
+   Angle& add(double delta) { radians += delta; return *this; }
 
 private:
    double normalize(double radians) const;
