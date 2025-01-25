@@ -39,14 +39,14 @@ public:
    double getRadians() const { return radians; }
 
    // Setters
-   void setDegrees(double degrees) {this->radians = (degrees/360) * 2 * M_PI;}
-   void setRadians(double radians) {this->radians = radians;}
+   void setDegrees(double degrees) {this->radians = normalize((degrees/360) * 2 * M_PI);}
+   void setRadians(double radians) {this->radians = normalize(radians);}
    void setUp()                    {radians = 0.0;}
    void setDown()                  {radians = M_PI;}
    void setRight()                 {radians = M_PI/2;}
    void setLeft()                  {radians = M_PI * 1.5;}
    void reverse()                  {radians += M_PI;}
-   Angle& add(double delta) { radians += delta; return *this; }
+   Angle& add(double delta) { radians = normalize(radians + delta); return *this; }
 
 private:
    double normalize(double radians) const;
